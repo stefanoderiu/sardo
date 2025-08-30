@@ -1,26 +1,84 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Redirecting...</title>
-    <script>
-      fetch('link.txt')
-        .then(response => response.text())
-        .then(url => {
-          window.location.href = url.trim();
-        })
-        .catch(error => {
-          document.body.innerHTML = `<p>Errore nel caricamento del link. <br> ${error}</p>`;
-        });
-    </script>
-  </head>
-  <body>
-    <p>Stai per essere reindirizzato. Se non succede, <a id="manual-link" href="#">clicca qui</a>.</p>
-    <script>
-      fetch('link.txt')
-        .then(response => response.text())
-        .then(url => {
-          document.getElementById('manual-link').href = url.trim();
-        });
-    </script>
-  </body>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>SARDO</title>
+  <link rel="icon" href="index_files/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="index_files/logo.png">
+
+  <style>
+    body {
+      background-color: #FFFFFF;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-box {
+      margin-top: 40px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #error-message {
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="index_files/logo.png" alt="Logo" class="logo">
+
+    <div class="login-box">
+      <a id="ngrok-link" href="#" target="_blank">
+        <button>Vai alla pagina</button>
+      </a>
+      <div id="error-message">⚠️ Link non disponibile</div>
+    </div>
+  </div>
+
+  <script>
+    // Carica il link dal file link.txt
+    fetch('link.txt')
+      .then(response => {
+        if (!response.ok) throw new Error("File non trovato");
+        return response.text();
+      })
+      .then(url => {
+        const trimmedUrl = url.trim();
+        if (trimmedUrl) {
+          document.getElementById('ngrok-link').href = trimmedUrl;
+        } else {
+          document.getElementById('error-message').style.display = 'block';
+        }
+      })
+      .catch(error => {
+        console.error('Errore nel caricamento del link:', error);
+        document.getElementById('error-message').style.display = 'block';
+      });
+  </script>
+
+</body>
 </html>
