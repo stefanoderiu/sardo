@@ -35,20 +35,20 @@
     }
 
     button {
-  padding: 20px 40px;       /* Aumenta dimensioni interne */
-  font-size: 24px;          /* Testo più grande */
-  cursor: pointer;
-  border-radius: 8px;       /* (facoltativo) Angoli arrotondati */
-  background-color: #007BFF;/* (facoltativo) Colore più visibile */
-  color: white;             /* (facoltativo) Testo bianco */
-  border: none;             /* (facoltativo) Rimuove bordo */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* (facoltativo) Effetto ombra */
-  transition: transform 0.2s ease;
-}
+      padding: 20px 40px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
 
-button:hover {
-  transform: scale(1.05);   /* Effetto al passaggio del mouse */
-}
+    button:hover {
+      transform: scale(1.05);
+    }
 
     #error-message {
       color: red;
@@ -70,8 +70,9 @@ button:hover {
   </div>
 
   <script>
-    // Carica il link dal file link.txt
-    fetch('link.txt')
+    // Genera un parametro casuale per evitare la cache
+    const nocache = Date.now();
+    fetch(`link.txt?nocache=${nocache}`)
       .then(response => {
         if (!response.ok) throw new Error("File non trovato");
         return response.text();
@@ -91,5 +92,4 @@ button:hover {
   </script>
 
 </body>
-
 </html>
