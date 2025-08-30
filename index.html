@@ -35,10 +35,20 @@
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+  padding: 20px 40px;       /* Aumenta dimensioni interne */
+  font-size: 24px;          /* Testo più grande */
+  cursor: pointer;
+  border-radius: 8px;       /* (facoltativo) Angoli arrotondati */
+  background-color: #007BFF;/* (facoltativo) Colore più visibile */
+  color: white;             /* (facoltativo) Testo bianco */
+  border: none;             /* (facoltativo) Rimuove bordo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* (facoltativo) Effetto ombra */
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);   /* Effetto al passaggio del mouse */
+}
 
     #error-message {
       color: red;
@@ -81,4 +91,5 @@
   </script>
 
 </body>
+
 </html>
