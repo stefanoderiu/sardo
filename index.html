@@ -71,29 +71,32 @@
 
   <script>
     // Genera un parametro casuale per evitare la cache
-    const nocache = Date.now();
-    fetch(`link.txt?nocache=${nocache}`)
-      .then(response => {
-        if (!response.ok) throw new Error("File non trovato");
-        return response.text();
-      })
-      .then(url => {
-        const trimmedUrl = url.trim();
-        if (trimmedUrl) {
-          document.getElementById('ngrok-link').href = trimmedUrl;
-        } else {
-          document.getElementById('error-message').style.display = 'block';
-        }
-      })
-      .catch(error => {
-        console.error('Errore nel caricamento del link:', error);
-        document.getElementById('error-message').style.display = 'block';
-      });
+const nocache = Date.now();
+fetch(`https://raw.githubusercontent.com/tuo-utente/tuo-repo/main/link.txt?nocache=${nocache}`, {
+  cache: "no-store"
+})
+  .then(response => {
+    if (!response.ok) throw new Error("File non trovato");
+    return response.text();
+  })
+  .then(url => {
+    const trimmedUrl = url.trim();
+    if (trimmedUrl) {
+      document.getElementById('ngrok-link').href = trimmedUrl;
+    } else {
+      document.getElementById('error-message').style.display = 'block';
+    }
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento del link:', error);
+    document.getElementById('error-message').style.display = 'block';
+  });
   </script>
 
 </body>
 </html>
 </html>
+
 
 
 
