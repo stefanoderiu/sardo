@@ -70,9 +70,9 @@
   </div>
 
   <script>
-  // Genera il nome del file dinamico in base alla data (es. link_20250831.json)
-  const oggi = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-  const fileName = `link_${oggi}.json`;
+  // Genera un numero casuale tra 100000 e 999999
+  const randomId = Math.floor(100000 + Math.random() * 900000);
+  const fileName = `link_${randomId}.json`;
 
   fetch(fileName)
     .then(response => {
@@ -94,6 +94,7 @@
 </script>
 </body>
 </html>
+
 
 
 
