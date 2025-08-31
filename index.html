@@ -70,10 +70,12 @@
   </div>
 
   <script>
-    // Genera un parametro casuale per evitare la cache
-    const nocache = Date.now();
-    fetch(`link.json?nocache=${nocache}`)
-     .then(response => {
+  // Genera il nome del file dinamico in base alla data (es. link_20250831.json)
+  const oggi = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const fileName = `link_${oggi}.json`;
+
+  fetch(fileName)
+    .then(response => {
       if (!response.ok) throw new Error("File non trovato");
       return response.json();
     })
@@ -89,10 +91,9 @@
       console.error('Errore nel caricamento del link:', error);
       document.getElementById('error-message').style.display = 'block';
     });
-
-  </script>
-
+</script>
 </body>
 </html>
+
 
 
