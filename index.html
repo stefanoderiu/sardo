@@ -62,34 +62,12 @@
     <img src="index_files/logo.png" alt="Logo" class="logo">
 
     <div class="login-box">
-      <a id="ngrok-link" href="#" target="_blank">
+      <a id="ngrok-link" href="https://f2bf00148a95.ngrok-free.app/SARDO/index.html" target="_blank">
         <button>ENTRA</button>
       </a>
-      <div id="error-message">⚠️ Link non disponibile</div>
     </div>
   </div>
 
-  <script>
-    // Genera un parametro casuale per evitare la cache
-    const nocache = Date.now();
-    fetch(`link.txt?nocache=${nocache}`)
-      .then(response => {
-        if (!response.ok) throw new Error("File non trovato");
-        return response.text();
-      })
-      .then(url => {
-        const trimmedUrl = url.trim();
-        if (trimmedUrl) {
-          document.getElementById('ngrok-link').href = trimmedUrl;
-        } else {
-          document.getElementById('error-message').style.display = 'block';
-        }
-      })
-      .catch(error => {
-        console.error('Errore nel caricamento del link:', error);
-        document.getElementById('error-message').style.display = 'block';
-      });
-  </script>
-
 </body>
 </html>
+
