@@ -70,12 +70,10 @@
   </div>
 
   <script>
-  // Genera un numero casuale tra 100000 e 999999
-  const randomId = Math.floor(100000 + Math.random() * 900000);
-  const fileName = `link_${randomId}.json`;
-
-  fetch(fileName)
-    .then(response => {
+    // Genera un parametro casuale per evitare la cache
+    const nocache = Date.now();
+    fetch(`link.json?nocache=${nocache}`)
+     .then(response => {
       if (!response.ok) throw new Error("File non trovato");
       return response.json();
     })
@@ -91,9 +89,12 @@
       console.error('Errore nel caricamento del link:', error);
       document.getElementById('error-message').style.display = 'block';
     });
-</script>
+
+  </script>
+
 </body>
 </html>
+
 
 
 
