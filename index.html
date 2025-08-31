@@ -72,7 +72,7 @@
   <script>
     // Genera un parametro casuale per evitare la cache
     const nocache = Date.now();
-    fetch(`link.txt?nocache=${nocache}`)
+    fetch(`link.json?nocache=${nocache}`)
       .then(response => {
         if (!response.ok) throw new Error("File non trovato");
         return response.text();
@@ -93,3 +93,4 @@
 
 </body>
 </html>
+
