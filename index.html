@@ -69,28 +69,33 @@
     </div>
   </div>
 
-  <script>
-    fetch('link.txt')
-      .then(response => {
-        if (!response.ok) throw new Error("File non trovato");
-        return response.text();
-      })
-      .then(text => {
-        const url = text.trim();
-        if (url) {
-          document.getElementById('ngrok-link').href = url;
-        } else {
-          document.getElementById('error-message').style.display = 'block';
-        }
-      })
-      .catch(error => {
-        console.error('Errore nel caricamento del link:', error);
+ <script>
+  // Genera un numero casuale per aggirare la cache
+  const randomParam = Math.floor(Math.random() * 1000000);
+  const fileUrl = `link.txt?nocache=${randomParam}`;
+
+  fetch(fileUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("File non trovato");
+      return response.text();
+    })
+    .then(text => {
+      const url = text.trim();
+      if (url) {
+        document.getElementById('ngrok-link').href = url;
+      } else {
         document.getElementById('error-message').style.display = 'block';
-      });
-  </script>
+      }
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento del link:', error);
+      document.getElementById('error-message').style.display = 'block';
+    });
+</script>
 
 </body>
 </html>
+
 
 
 
