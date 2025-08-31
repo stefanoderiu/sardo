@@ -69,32 +69,29 @@
     </div>
   </div>
 
- <script>
-    // Genera un parametro casuale per evitare la cache
-    const nocache = Date.now();
-    fetch(`link.json?nocache=${nocache}`)
-     .then(response => {
-      if (!response.ok) throw new Error("File non trovato");
-      return response.json();
-    })
-    .then(data => {
-      const url = data.url?.trim();
-      if (url) {
-        document.getElementById('ngrok-link').href = url;
-      } else {
+  <script>
+    fetch('link.txt')
+      .then(response => {
+        if (!response.ok) throw new Error("File non trovato");
+        return response.text();
+      })
+      .then(text => {
+        const url = text.trim();
+        if (url) {
+          document.getElementById('ngrok-link').href = url;
+        } else {
+          document.getElementById('error-message').style.display = 'block';
+        }
+      })
+      .catch(error => {
+        console.error('Errore nel caricamento del link:', error);
         document.getElementById('error-message').style.display = 'block';
-      }
-    })
-    .catch(error => {
-      console.error('Errore nel caricamento del link:', error);
-      document.getElementById('error-message').style.display = 'block';
-    });
-
+      });
   </script>
-
 
 </body>
 </html>
+
 
 
 
